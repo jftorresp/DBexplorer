@@ -12,3 +12,7 @@ const showDbs = dbs => {
     selectDbs.appendChild(dbOpt);
   });
 };
+
+// const showCollections = cols => {
+
+// }

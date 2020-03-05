@@ -6,9 +6,8 @@ function MongoUtils() {
     port = 27017,
     dbName = "database";
 
-  mu.databases = {};
-
-  mu.databases.getDbs = () => {
+  
+  mu.getDbs = () => {
     const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
     return client
