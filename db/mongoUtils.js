@@ -20,8 +20,6 @@ function MongoUtils() {
       })
       .finally(() => client.close());
   };
-
-  mu.collections = {};
   
   mu.getCollections = () => {
     const url = `mongodb://${hostname}:${port}`;
@@ -33,7 +31,6 @@ function MongoUtils() {
           .listCollections()
           .toArray();
       })
-      .then(cols => console.log("Collections", cols))
       .finally(client.close());
   };
 

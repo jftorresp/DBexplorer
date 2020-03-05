@@ -7,12 +7,13 @@ const showDbs = dbs => {
   dbs.forEach(db => {
     const dbOpt = document.createElement("option");
 
-    dbOpt.textContent = `${db.name}`;
+    dbOpt.value = `${db.name}`;
 
     selectDbs.appendChild(dbOpt);
   });
 };
 
+// selectDbs.value;
+// selectDbs.addEventListener("change",updateCols);
 // const showCollections = cols => {
-
 // }

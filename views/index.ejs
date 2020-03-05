@@ -16,20 +16,25 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
-    <div class="container">
-      <div id="databases">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+    </nav>
+      <div >
       <label for="">Select a database:</label>
-        <select name="" id="">
+      
+      <select name="" id="databases">
+        <% if(databases.length > 0) { %> 
           <% databases.forEach( (database) => { %>
-          <option value=""><%= database.name %></option>
+          <option value="<%= database.name %>"><%= database.name %></option>
           <% }) %>
-        </select>
+        <% } %>
+      </select>
+      
      </div>
 
      <div>
        <div class="row"></div>
      </div>
-    </div>
 
     <script type="text/javascript" src="/javascripts/main.js"></script>
   </body>
