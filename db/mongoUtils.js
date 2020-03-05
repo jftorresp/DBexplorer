@@ -4,17 +4,41 @@ function MongoUtils() {
   const mu = {},
     hostname = "localhost",
     port = 27017,
-    dbName = "database",
-    colName = "collection";
+    dbName = "database";
 
-  mu.connect = () => {
-    const client = new MongoClient(`mongodb://${hostname}:${port}`, {
-      useUnifiedTopology: true
-    });
-    return client.conect();
+  mu.databases = {};
+
+  mu.databases.getDbs = () => {
+    const url = `mongodb://${hostname}:${port}`;
+    const client = new MongoClient(url, { useUnifiedTopology: true });
+    return client
+      .connect()
+      .then(client => {
+        return client
+          .db()
+          .admin()
+          .listDatabases();
+      })
+      .finally(() => client.close());
   };
 
-  mu.collection = {};
+  mu.collections = {};
+  
+  mu.getCollections = () => {
+    const url = `mongodb://${hostname}:${port}`;
+    const client = new MongoClient(url, { useUnifiedTopology: true });
+    return client
+      .then(client => {
+        return client
+          .db(dbName)
+          .listCollections()
+          .toArray();
+      })
+      .then(cols => console.log("Collections", cols))
+      .finally(client.close());
+  };
+
+  return mu;
 }
 
 module.exports = MongoUtils();
