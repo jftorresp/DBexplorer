@@ -7,10 +7,20 @@ const mu = require("../db/mongoUtils.js");
 router.get("/", function(req, res) {
   mu.getDbs().then(databases => {
     console.log("databases", databases);
-    res.render("index",  databases );
+    res.render("index", databases);
   });
 });
 
-//.sort({_id:-1})
+//  Data endpoint for geting the collections
+router.get("/databases", (req, res) => {
+  // const db = req.params.name;
+
+  mu.getCollections()
+    .then(collections => {
+      res.json(collections);
+      console.log("collections", collections);
+    })
+    .catch(err => console.log("Error", err));
+});
 
 module.exports = router;

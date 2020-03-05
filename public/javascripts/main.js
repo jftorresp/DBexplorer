@@ -1,7 +1,8 @@
+const selectDbs = document.querySelector("#databases");
+// const collections = document.querySelector(".collections");
+const collectionsDiv = document.querySelector(".listCols");
 
 const showDbs = dbs => {
-  const selectDbs = document.querySelector("#databases");
-
   selectDbs.innerHTML = "";
 
   dbs.forEach(db => {
@@ -13,7 +14,29 @@ const showDbs = dbs => {
   });
 };
 
-// selectDbs.value;
-// selectDbs.addEventListener("change",updateCols);
-// const showCollections = cols => {
-// }
+selectDbs.addEventListener("change", evt => {
+  if (evt.target.value) {
+    collectionsDiv.innerHTML = "Getting collections";
+    // const query = selectDbs.value;
+    fetch("/databases?name=local")
+      .then(res => res.json())
+      .then(showCollections);
+
+    evt.preventDefault();
+  };
+});
+
+/* This method show the collections in the specified database */
+const showCollections = cols => {
+  collectionsDiv.innerHTML = "";
+
+  cols.forEach(col => {
+    const collection = document.createElement("row");
+
+    collection.textContent = `${col.name}`;
+
+    collectionsDiv.appendChild(collection);
+  });
+};
+
+

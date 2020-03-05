@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DB Explorer</title>
 
-  <!-- Link to Boostrap 4-->
+    <!-- Link to Boostrap 4-->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -13,28 +13,42 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Neuton&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">DBExplorer</a>
     </nav>
-      <div >
-      <label for="">Select a database:</label>
-      
-      <select name="" id="databases">
-        <% if(databases.length > 0) { %> 
-          <% databases.forEach( (database) => { %>
-          <option value="<%= database.name %>"><%= database.name %></option>
-          <% }) %>
-        <% } %>
-      </select>
-      
-     </div>
 
-     <div>
-       <div class="row"></div>
-     </div>
+    <div class="container">
+      <h1>Welcome to DBExplorer! go ahead and choose a database to look into!</h1>
+      <div class="listDbs">
+        <label for="">Select a database: </label>
+
+        <select name="" id="databases" class="custom-select">
+          <% if(databases.length > 0) { %> <% databases.forEach( (database) => {
+          %>
+          <option value="<%= database.name %>"><%= database.name %></option>
+          <% }) %> <% } %>
+        </select>
+      </div>
+
+      <div class="listCols">
+        <div class="row collections">
+
+        </div>
+      </div>
+
+      <div class="createRegister">
+        <h2>Add register</h2>
+        <%- include("./collectionsForm.ejs") %>
+      </div>
+    </div>
 
     <script type="text/javascript" src="/javascripts/main.js"></script>
   </body>
