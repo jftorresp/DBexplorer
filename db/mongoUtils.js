@@ -26,7 +26,7 @@ function MongoUtils() {
       .finally(() => client.close());
   };
 
-  mu.getCollections = (db) => {
+  mu.getCollections = db => {
     const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
     // const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
@@ -42,16 +42,19 @@ function MongoUtils() {
       .finally(() => client.close());
   };
 
-  // mu.insertRegister = (db, col, reg) => {
-  //   const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
-  //   // const url = `mongodb://${hostname}:${port}`;
-  //   const client = new MongoClient(url, { useUnifiedTopology: true });
-  //   const collection = client.db(db).collection(col);
+  mu.insertRegister = (db, col, reg) => {
+    const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
+    // const url = `mongodb://${hostname}:${port}`;
+    const client = new MongoClient(url, { useUnifiedTopology: true });
 
-  //   return client.connect().then(client => {
-  //     collection.insert(reg).finally(() => client.close());
-  //   });
-  // };
+    return client
+      .connect()
+      .then(client => {
+        const collection = client.db(db).collection(col);
+        return collection.insertOne(reg);
+      })
+      .finally(() => client.close());
+  };
 
   return mu;
 }

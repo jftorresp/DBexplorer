@@ -33,13 +33,24 @@
         <select name="" id="databases" class="custom-select">
           <% if(databases.length > 0) { %> 
             <% databases.forEach( (database) => {%>
-              <option 
-              data-databasename=<%= database.name %>
+              <option class="db" 
+              data-databasename=<%= database.name %> 
+              data-databasesize=<%= database.sizeOnDisk %>
+              data-databaseempty=<%= database.empty %>
               value="<%= database.name %>" class="dbOpt"><%= database.name %>
             </option>
             <% }) %> 
           <% } %>
         </select>
+
+        <div class="database-info">
+              <div class="row" id="database-size">
+                
+              </div>
+              <div class="row" id="database-empty">
+                
+              </div>
+        </div>
       </div>
 
       <div class="listCols">
@@ -53,7 +64,6 @@
         <%- include("./collectionsForm.ejs") %>
       </div>
     </div>
-
     <script type="text/javascript" src="/javascripts/main.js"></script>
   </body>
 </html>

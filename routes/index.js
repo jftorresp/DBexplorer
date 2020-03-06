@@ -12,23 +12,28 @@ router.get("/", function(req, res) {
 });
 
 //  Data endpoint for geting the collections
-router.get("/collections", (req, res) => {
-  mu.getCollections()
-    .then(collections => res.json(collections))
+router.get("/collections/:name", (req, res) => {
+  const db = req.params.name;
+  console.log(db);
+  mu.getCollections(db)
+    .then(collections => {
+      res.json(collections);
+    })
     .catch(err => console.log("Error", err));
 });
 
-//  Data endpoint for inserting data into collections
-// router.post("/collections/create", (req, res) => {
-//   const db = req.params.name;
-//   const col = req.params.col;
-//   const data = {
-//     Name: req.body.name,
-//     Team: req.body.team,
-//     timestamp: new Date()
-//   };
+//Data endpoint for inserting data into collections
+router.post("/collections/create", (req, res) => {
+  console.log("params", req.params);
+  const db = req.params.name;
+  const col = req.params.col;
+  const data = {
+    Name: req.body.name,
+    Team: req.body.team,
+    timestamp: new Date()
+  };
 
-//   mu.insertRegister(db, col, data).then(res.json(data));
-// });
+  mu.insertRegister(db, col, data).then(res.redirect("/"));
+});
 
 module.exports = router;
