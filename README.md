@@ -25,7 +25,7 @@ The application runs an Express Server listening on port 3000.
 After fullfilling the pre-requisites, clone the repository using ```git clone``` command to the url and then go to the directory and do this:
 
 ```
-cd DBExplorer
+cd DBexplorer
 npm install
 npm start
 
