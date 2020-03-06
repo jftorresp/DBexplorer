@@ -86,6 +86,17 @@ h2 {
   margin-bottom: 20px;
 }
 
+.container .listData {
+  background-color: #26451e;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.container .listData .dataDiv{
+  color: #fff;
+  padding: 10px;
+}
+
 .container h2 {
   color: #fff;
 }

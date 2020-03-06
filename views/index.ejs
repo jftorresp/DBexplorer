@@ -27,43 +27,51 @@
 
     <div class="container">
       <h1>Welcome to DBExplorer! go ahead and choose a database to look into!</h1>
+      <!-- Database list section -->
       <div class="listDbs">
         <h2>Select a database: </h2>
-
         <select name="" id="databases" class="custom-select">
           <% if(databases.length > 0) { %> 
             <% databases.forEach( (database) => {%>
-              <option class="db" 
-              data-databasename=<%= database.name %> 
-              data-databasesize=<%= database.sizeOnDisk %>
-              data-databaseempty=<%= database.empty %>
-              value="<%= database.name %>" class="dbOpt"><%= database.name %>
-            </option>
+              <option class="db" value="<%= database.name %>" class="dbOpt"><%= database.name %></option>
             <% }) %> 
           <% } %>
         </select>
-
-        <div class="database-info">
-              <div class="row" id="database-size">
-                
-              </div>
-              <div class="row" id="database-empty">
-                
-              </div>
+      </div>
+      <!-- Database information section -->
+       <div class="database-info">
+        <div class="row" id="database-size">  
+        </div>
+        <div class="row" id="database-empty">        
         </div>
       </div>
 
+      <!-- Collections lists section -->
       <div class="listCols">
         <h2>Available Collections:</h2>
         <select class="custom-select colsSelect">
         </select>
       </div>
 
+      <!-- Data lists section -->
+      <div class="listData">
+        <h2>Available Documents:</h2>
+      </div>
+
+     <!-- Create a register section -->
       <div class="createRegister">
         <h2>Add a document to the collection:</h2>
-        <%- include("./collectionsForm.ejs") %>
+        <form action="/collections/create" method="POST" id="formCollections">
+          <div class="form-group">
+            <label for="my-input">Name</label>
+            <input id="my-input" class="form-control" type="text" name="">
+          </div>
+          <button type="submit">Add</button>
+        </form>
       </div>
     </div>
+
+    <!-- SCRIPTS -->
     <script type="text/javascript" src="/javascripts/main.js"></script>
   </body>
 </html>

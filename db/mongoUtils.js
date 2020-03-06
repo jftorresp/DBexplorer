@@ -42,6 +42,21 @@ function MongoUtils() {
       .finally(() => client.close());
   };
 
+  mu.getData = (db, col) => {
+    const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
+    // const url = `mongodb://${hostname}:${port}`;
+    const client = new MongoClient(url, { useUnifiedTopology: true });
+    return client.connect().then(client => {
+      const collection = client.db(db).collection(col);
+      return collection
+        .find()
+        .limit(20)
+        .sort({ timestamp: -1 })
+        .toArray()
+        .finally(() => client.close());
+    });
+  };
+
   mu.insertRegister = (db, col, reg) => {
     const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
     // const url = `mongodb://${hostname}:${port}`;

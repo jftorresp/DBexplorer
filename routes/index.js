@@ -3,6 +3,10 @@ var router = express.Router();
 
 const mu = require("../db/mongoUtils.js");
 
+// const buildQuery = query => ({
+//   name: new RegExp(`.*${query}.*`, "i")
+// });
+
 /* GET home page. */
 router.get("/", function(req, res) {
   mu.getDbs().then(databases => {
@@ -34,6 +38,17 @@ router.post("/collections/create", (req, res) => {
   };
 
   mu.insertRegister(db, col, data).then(res.redirect("/"));
+});
+
+//  Data endpoint
+router.get("/data/:db/:col", (req, res) => {
+  console.log("params", req.params);
+  const db = req.params.db;
+  const col = req.params.col;
+
+  mu.getData(db, col)
+    .then(data => res.json(data))
+    .catch(err => console.log("Error", err));
 });
 
 module.exports = router;

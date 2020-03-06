@@ -1,40 +1,9 @@
 const selectDbs = document.querySelector("#databases");
-// const databases = document.querySelectorAll(".db");
-// const collections = document.querySelector(".collections");
 const colSelect = document.querySelector(".colsSelect");
-// const dbOpt = document.querySelectorAll(".dbOpt");
-
-// selectDbs.addEventListener("change", evt => {
-//   // collectionsDiv.innerHTML = "Getting collections";
-//   dbOpt.forEach(db => {
-//     dbOpt.innerHTML = db.dataset.databasename;
-//     const dbName = dbOpt.innerHTML;
-//     fetch(`/collections?name=${dbName}`)
-//       .then(res => res.json())
-//       .then(collections => {
-//         console.log("collections", collections);
-//         colSelect.innerHTML = "";
-//         collections.forEach(col => {
-//           console.log("col", col);
-//           const colOpt = document.createElement("option");
-//           colOpt.textContent = `${col.name}`;
-//           colOpt.value = `${col.name}`;
-//           colSelect.appendChild(colOpt);
-//           if(collections.length == 0){
-//             colOpt.textContent = "There are no collections";
-//             colOpt.value = "N/A";
-//            }
-//         });
-//         evt.preventDefault();
-//       });
-//   });
-// });
-
-// const databaseSize = document.querySelector("#database-size");
-// const databaseEmpty = document.querySelector("#database-empty");
+const dataDiv = document.querySelector(".listData");
+// const formCollection = document.querySelector("#formCollection");
 
 selectDbs.addEventListener("change", evt => {
-  // collectionsDiv.innerHTML = "Getting collections";
   if (evt.target.value) {
     const dbName = selectDbs.value;
     fetch(`/collections/${dbName}`)
@@ -52,35 +21,22 @@ selectDbs.addEventListener("change", evt => {
   }
 });
 
-// const databaseInfo = document.querySelector(".database-info");
+colSelect.addEventListener("change", evt => {
+  const dbName = selectDbs.value;
+  const cols = colSelect.value;
+  fetch(`/data/${dbName}/${cols}`)
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(d => {
+        const dataRow = document.createElement("div");
+        dataRow.className = "row dataDiv";
+        dataRow.textContent = `${JSON.stringify(d)}`;
+        dataDiv.appendChild(dataRow);
+      });
+      evt.preventDefault();
+    });
+});
 
-// colSelect.addEventListener("change", evt => {
-//   // collectionsDiv.innerHTML = "Getting collections";
-//   dbOpt.forEach(db => {
-//     dbOpt.innerHTML = db.dataset.databasename;
-//     const dbName = dbOpt.innerHTML;
-//     fetch(`/collections?name=${dbName}`)
-//       .then(res => res.json())
-//       .then(collections => {
-//         console.log("collections", collections);
-//         colSelect.innerHTML = "";
-//         collections.forEach(col => {
-//           console.log("col", col);
-//           const colOpt = document.createElement("option");
-//           colOpt.textContent = `${col.name}`;
-//           colOpt.value = `${col.name}`;
-//           colSelect.appendChild(colOpt);
-//         });
-//         evt.preventDefault();
-//       });
-//   });
-// });
+// const createData = () => {};
 
-// const getCols = db => {
-//   return fetch(`/collections?name=${db}`).then(res => res.json());
-// };
-
-/* This method show the collections in the specified database */
-// const showCollections = collections => {
-//   collections.forEach(col => {});
-// };
+// formCollection.addEventListener("submit", createData);
