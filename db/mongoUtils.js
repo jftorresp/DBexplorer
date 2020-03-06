@@ -1,12 +1,19 @@
+"use strict";
 const MongoClient = require("mongodb").MongoClient;
+const dotenv = require("dotenv");
+dotenv.config();
 
 function MongoUtils() {
-  const mu = {},
-    hostname = "localhost",
-    port = 27017;
+  const mu = {};
+  // hostname = "localhost",
+  // port = 27017;
+  let dbHostName = process.env.dbHostName || "";
+  let dbUser = process.env.dbUser || "";
+  let dbPassword = process.env.dbPassword || "";
 
   mu.getDbs = () => {
-    const url = `mongodb://${hostname}:${port}`;
+    const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
+    // const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
     return client
       .connect()
@@ -19,22 +26,32 @@ function MongoUtils() {
       .finally(() => client.close());
   };
 
-  mu.getCollections = () => {
-    const url = `mongodb://${hostname}:${port}`;
+  mu.getCollections = (db) => {
+    const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
+    // const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
 
     return client
       .connect()
       .then(client => {
         return client
-          .db("local")
+          .db(db)
           .listCollections()
           .toArray();
       })
-      .then(collections => console.log("Collections", collections))
-      .catch(err => console.log("Error", err))
-      .finally(client.close());
+      .finally(() => client.close());
   };
+
+  // mu.insertRegister = (db, col, reg) => {
+  //   const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
+  //   // const url = `mongodb://${hostname}:${port}`;
+  //   const client = new MongoClient(url, { useUnifiedTopology: true });
+  //   const collection = client.db(db).collection(col);
+
+  //   return client.connect().then(client => {
+  //     collection.insert(reg).finally(() => client.close());
+  //   });
+  // };
 
   return mu;
 }

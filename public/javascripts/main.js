@@ -1,42 +1,57 @@
 const selectDbs = document.querySelector("#databases");
 // const collections = document.querySelector(".collections");
-const collectionsDiv = document.querySelector(".listCols");
-
-const showDbs = dbs => {
-  selectDbs.innerHTML = "";
-
-  dbs.forEach(db => {
-    const dbOpt = document.createElement("option");
-
-    dbOpt.value = `${db.name}`;
-
-    selectDbs.appendChild(dbOpt);
-  });
-};
+const colSelect = document.querySelector(".colsSelect");
+const dbOpt = document.querySelectorAll(".dbOpt");
 
 selectDbs.addEventListener("change", evt => {
-  if (evt.target.value) {
-    collectionsDiv.innerHTML = "Getting collections";
-    // const query = selectDbs.value;
-    fetch("/databases?name=local")
+  // collectionsDiv.innerHTML = "Getting collections";
+  dbOpt.forEach(db => {
+    dbOpt.innerHTML = db.dataset.databasename;
+    const dbName = dbOpt.innerHTML;
+    fetch(`/collections?name=${dbName}`)
       .then(res => res.json())
-      .then(showCollections);
-
-    evt.preventDefault();
-  };
+      .then(collections => {
+        console.log("collections", collections);
+        colSelect.innerHTML = "";
+        collections.forEach(col => {
+          console.log("col", col);
+          const colOpt = document.createElement("option");
+          colOpt.textContent = `${col.name}`;
+          colOpt.value = `${col.name}`;
+          colSelect.appendChild(colOpt);
+        });
+        evt.preventDefault();
+      });
+  });
 });
 
-/* This method show the collections in the specified database */
-const showCollections = cols => {
-  collectionsDiv.innerHTML = "";
-
-  cols.forEach(col => {
-    const collection = document.createElement("row");
-
-    collection.textContent = `${col.name}`;
-
-    collectionsDiv.appendChild(collection);
+colSelect.addEventListener("change", evt => {
+  // collectionsDiv.innerHTML = "Getting collections";
+  dbOpt.forEach(db => {
+    dbOpt.innerHTML = db.dataset.databasename;
+    const dbName = dbOpt.innerHTML;
+    fetch(`/collections?name=${dbName}`)
+      .then(res => res.json())
+      .then(collections => {
+        console.log("collections", collections);
+        colSelect.innerHTML = "";
+        collections.forEach(col => {
+          console.log("col", col);
+          const colOpt = document.createElement("option");
+          colOpt.textContent = `${col.name}`;
+          colOpt.value = `${col.name}`;
+          colSelect.appendChild(colOpt);
+        });
+        evt.preventDefault();
+      });
   });
-};
+});
 
+// const getCols = db => {
+//   return fetch(`/collections?name=${db}`).then(res => res.json());
+// };
 
+/* This method show the collections in the specified database */
+// const showCollections = collections => {
+//   collections.forEach(col => {});
+// };

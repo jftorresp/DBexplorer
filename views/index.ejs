@@ -28,24 +28,28 @@
     <div class="container">
       <h1>Welcome to DBExplorer! go ahead and choose a database to look into!</h1>
       <div class="listDbs">
-        <label for="">Select a database: </label>
+        <h2>Select a database: </h2>
 
         <select name="" id="databases" class="custom-select">
-          <% if(databases.length > 0) { %> <% databases.forEach( (database) => {
-          %>
-          <option value="<%= database.name %>"><%= database.name %></option>
-          <% }) %> <% } %>
+          <% if(databases.length > 0) { %> 
+            <% databases.forEach( (database) => {%>
+              <option 
+              data-databasename=<%= database.name %>
+              value="<%= database.name %>" class="dbOpt"><%= database.name %>
+            </option>
+            <% }) %> 
+          <% } %>
         </select>
       </div>
 
       <div class="listCols">
-        <div class="row collections">
-
-        </div>
+        <h2>Available Collections:</h2>
+        <select class="custom-select colsSelect">
+        </select>
       </div>
 
       <div class="createRegister">
-        <h2>Add register</h2>
+        <h2>Add a document to the collection:</h2>
         <%- include("./collectionsForm.ejs") %>
       </div>
     </div>
