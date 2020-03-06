@@ -28,7 +28,6 @@ After fullfilling the pre-requisites, clone the repository using ```git clone```
 cd DBexplorer
 npm install
 npm start
-
 ```
 # Overview
 
