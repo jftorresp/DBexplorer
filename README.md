@@ -10,10 +10,6 @@ Creative component:
 2. Install the mongodb module with ```npm install mongodb ```
 3. Set your enviroment variables for the data base credentials (https://nodejs.org/dist/latest-v8.x/docs/api/process.html)
 
-# Deploy Server
-
-You can see the server running in: 
-
 # Technologies
 
 The application runs an Express Server listening on port 3000.
@@ -22,7 +18,7 @@ The application runs an Express Server listening on port 3000.
   
 # Local Running
 
-After fullfilling the pre-requisites, clone the repository using ```git clone``` command to the url and then go to the directory and do this:
+For the moment the application runs only locally. After fullfilling the pre-requisites, clone the repository using ```git clone``` command to the url and then go to the directory and do this:
 
 ```
 cd DBexplorer
