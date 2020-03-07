@@ -76,9 +76,66 @@
           <button type="submit">Add</button>
         </form>
       </div>
+
+      <div id="floating-info" class="overflow-auto">
+        <div class="row info-title">
+          <div class="col-6">
+            <h5 style="font-weight: normal;">
+            About MongoDB
+           </h5>
+          </div>
+          <div class="col-6 justify-content-end">
+            <a href="#" id="goUp" onclick="goUp()"><i class="fa fa-chevron-up"></i></a>
+          </div>
+        </div>
+        <div class="info-content">
+          <div class="row">
+            <div class="col-6">
+              <iframe width="300px" height="180px" src="https://www.youtube.com/embed/H3P0lW94L2Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <small>Credits: mongodb at https://www.youtube.com/embed/H3P0lW94L2Q </small>
+            </div>
+            <div class="col-6 text-mg">         
+               <p>MongoDB offers a huge variety of functions and option 
+              to make over database collections. You can have a db hosted on the cloud and you can 
+              integrate it to any web application you want
+              </p>              
+          </div>
+        </div>
+            <div class="row listM">
+              <p>You can make all CRUD operations over many methods for a collections such as:</p>
+              <ul>
+                <li>insert()</li>
+                <li>find()</li>
+                <li>updateOne()</li>
+                <li>delete()</li>
+                <li>insertOneById()</li>
+              </ul>
+            </div>
+            <div class="row more-info">
+              <a href="http://mongodb.github.io/node-mongodb-native/" id="doc">View the documentation</a>
+            </div>
+            <div class="row img">
+              <p>Here is an arquitecture example with mongoDB and nodejs</p>
+              <img src="/images/mongo.png" alt="">
+            </div>
+        </div>
+      </div>
     </div>
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="/javascripts/main.js"></script>
+    <script>
+      function goUp(){
+        let mongoDiv = document.getElementById('floating-info');
+        let currentHeight = mongoDiv.clientHeight;
+        console.log("height", currentHeight);
+        if(currentHeight == 300){
+          mongoDiv.style.height = "40px";
+        }
+        else{
+          mongoDiv.style.height = "300px";
+        }
+      }
+  </script>
   </body>
 </html>

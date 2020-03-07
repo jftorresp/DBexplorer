@@ -32,11 +32,16 @@ colSelect.addEventListener("change", evt => {
       dataDiv.innerHTML = "";
       dataForm.innerHTML = "";
       const button = document.createElement("button");
+      let number = 1;
       data.forEach(d => {
+        const title = document.createElement("h3");
+        title.textContent = `Document #${number}`;
         const daticos = JSON.stringify(d);
         const datoReal = JSON.parse(daticos);
         const array = Object.entries(datoReal);
         const llavs = Object.keys(datoReal);
+        number = number+1;
+        dataDiv.appendChild(title);
         for (let [key, value] of array) {
           const dataRow = document.createElement("div");
           dataRow.className = "row dataDiv";
