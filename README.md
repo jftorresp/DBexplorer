@@ -33,4 +33,8 @@ npm start
 
 ![Overview](https://i.imgur.com/ppSSTt9.gif)
 
+## Selected Option:
+
+Option 1 (Saturday 8am)
+
 Made by [Juan Felipe Torres](https://github.com/jftorresp), licensed under MIT
