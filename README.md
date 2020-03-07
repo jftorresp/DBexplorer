@@ -10,6 +10,8 @@ DBExplorer is a full stack application that given a MongoDB url connection, list
 2. Install the mongodb module with ```npm install mongodb ```
 3. Set your enviroment variables for the data base credentials (https://nodejs.org/dist/latest-v8.x/docs/api/process.html)
 
+If you want to change the url of the mongo connection just delete it on the file Mongoutils.js and replace it with another. Then you will have to update the .env file. This file will be deleted later for terms of security but for now is just for testing.
+
 # Server
 
 The apllication is running on Heroku at : https://glacial-hollows-06751.herokuapp.com/
