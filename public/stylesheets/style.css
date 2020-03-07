@@ -1,5 +1,4 @@
 body {
-  font: 14px "Neuton", serif;
   background-color: #d9f9d1;
 }
 
@@ -9,12 +8,13 @@ a {
 
 .navbar {
   background-color: #74d45b;
+  font: 14px "Neuton", serif;
 }
 
 /** NAVBAR STYLES **/
 
 .navbar a {
-  color: #fff;
+  color: #26451e;
   text-decoration: none;
   font-size: 24px;
 }
@@ -27,6 +27,7 @@ a {
  
 .container {
   padding: 20px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container h1 {
@@ -95,8 +96,12 @@ h2 {
 .container .listData .dataDiv{
   color: #fff;
   padding: 10px;
+  font-size: 1vw;
 }
 
+.container .listData:hover{
+  background-color:#35682f;
+}
 .container h2 {
   color: #fff;
 }

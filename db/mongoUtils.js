@@ -66,7 +66,7 @@ function MongoUtils() {
       .connect()
       .then(client => {
         const collection = client.db(db).collection(col);
-        return collection.insertOne(reg);
+        return collection.insert(reg);
       })
       .finally(() => client.close());
   };

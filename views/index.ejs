@@ -18,54 +18,61 @@
       rel="stylesheet"
     />
 
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <nav class="navbar">
-      <a class="navbar-brand" href="#">DBExplorer</a>
+      <a class="navbar-brand" href="#">DBExplorer <i class="fa fa-leaf"></i></a>
     </nav>
 
     <div class="container">
-      <h1>Welcome to DBExplorer! go ahead and choose a database to look into!</h1>
+      <h1>
+        Welcome to DBExplorer! go ahead and choose a database to look into!
+      </h1>
       <!-- Database list section -->
       <div class="listDbs">
-        <h2>Select a database: </h2>
+        <h2>Select a database:</h2>
         <select name="" id="databases" class="custom-select">
-          <% if(databases.length > 0) { %> 
-            <% databases.forEach( (database) => {%>
-              <option class="db" value="<%= database.name %>" class="dbOpt"><%= database.name %></option>
-            <% }) %> 
-          <% } %>
+          <% if(databases.length > 0) { %> <% databases.forEach( (database) =>
+          {%>
+          <option class="db" value="<%= database.name %>" class="dbOpt"
+            ><%= database.name %></option
+          >
+          <% }) %> <% } %>
         </select>
       </div>
       <!-- Database information section -->
-       <div class="database-info">
-        <div class="row" id="database-size">  
-        </div>
-        <div class="row" id="database-empty">        
-        </div>
+      <div class="database-info">
+        <div class="row" id="database-size"></div>
+        <div class="row" id="database-empty"></div>
       </div>
 
       <!-- Collections lists section -->
       <div class="listCols">
         <h2>Available Collections:</h2>
-        <select class="custom-select colsSelect">
-        </select>
+        <select class="custom-select colsSelect"> </select>
       </div>
 
       <!-- Data lists section -->
-      <div class="listData">
+      <div class="listData container">
         <h2>Available Documents:</h2>
       </div>
 
-     <!-- Create a register section -->
+      <!-- Create a register section -->
       <div class="createRegister">
         <h2>Add a document to the collection:</h2>
-        <form action="/collections/create" method="POST" id="formCollections">
-          <div class="form-group">
-            <label for="my-input">Name</label>
-            <input id="my-input" class="form-control" type="text" name="">
-          </div>
+        <form action="/create" method="POST" id="dataForm">
           <button type="submit">Add</button>
         </form>
       </div>
