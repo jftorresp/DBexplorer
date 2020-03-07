@@ -2,7 +2,7 @@
 
 DBExplorer is a full stack application that given a MongoDB url connection, list all the databases. It also lists all the collections per database and you can create a new document for every collection you select.
 
-Creative component: 
+**Creative component:** A floating component in the bottom right side of the page showing some extra info about MongoDB for you to start learning right ahead!
 
 # Pre-requisites
 
@@ -30,5 +30,7 @@ npm install
 npm start
 ```
 # Overview
+
+![Overview](https://i.imgur.com/ppSSTt9.gif)
 
 Made by [Juan Felipe Torres](https://github.com/jftorresp), licensed under MIT
