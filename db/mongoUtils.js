@@ -28,7 +28,6 @@ function MongoUtils() {
 
   mu.getCollections = db => {
     const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
-    // const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
 
     return client
@@ -44,7 +43,6 @@ function MongoUtils() {
 
   mu.getData = (db, col) => {
     const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
-    // const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
     return client.connect().then(client => {
       const collection = client.db(db).collection(col);
@@ -59,7 +57,6 @@ function MongoUtils() {
 
   mu.insertRegister = (db, col, reg) => {
     const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHostName}?retryWrites=true&w=majority`;
-    // const url = `mongodb://${hostname}:${port}`;
     const client = new MongoClient(url, { useUnifiedTopology: true });
 
     return client

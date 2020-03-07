@@ -40,7 +40,7 @@ colSelect.addEventListener("change", evt => {
         const datoReal = JSON.parse(daticos);
         const array = Object.entries(datoReal);
         const llavs = Object.keys(datoReal);
-        number = number+1;
+        number = number + 1;
         dataDiv.appendChild(title);
         for (let [key, value] of array) {
           const dataRow = document.createElement("div");
@@ -61,26 +61,15 @@ colSelect.addEventListener("change", evt => {
       button.textContent = "Add";
       dataForm.appendChild(button);
     });
-  
+
   evt.preventDefault();
 });
 
 const createData = () => {
   colSelect.addEventListener("change", evt => {
-    fetch("/create")
-      .then(res => res.json())
-      .then(data => {
-        dataForm.innerHTML = "";
-        data.forEach(d => {
-          const label = document.createElement("label");
-          const dataInput = document.createElement("input");
-          const daticos = `${JSON.stringify(d)}`;
-          label.textContent = `${daticos[0]}`;
-          dataForm.appendChild(dataInput);
-          dataForm.appendChild(label);
-        });
-        evt.preventDefault();
-      });
+    fetch("/create").then(res => res.json());
+
+    evt.preventDefault();
   });
 };
 

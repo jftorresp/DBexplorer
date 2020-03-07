@@ -32,7 +32,7 @@ router.post("/create/", (req, res) => {
   mu.getDbs().then(db => {
     mu.getCollections(db).then(col => {
       mu.getData(db, col).then(data => {
-        mu.insertRegister(db, col, data).then(data => res.json(data));
+        mu.insertRegister(db, col, data).then(data => res.redirect("/"));
       });
     });
   });
