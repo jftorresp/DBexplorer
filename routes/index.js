@@ -3,16 +3,10 @@ var router = express.Router();
 
 const mu = require("../db/mongoUtils.js");
 
-// const buildQuery = query => ({
-//   name: new RegExp(`.*${query}.*`, "i")
-// });
-
 /* GET home page. */
 router.get("/", function(req, res) {
-  // const url = "hello";
-  // console.log("url", url);
+
   mu.getDbs().then(databases => {
-    // console.log("databases", databases);
     res.render("index", databases);
   });
 });
@@ -32,7 +26,7 @@ router.post("/create/", (req, res) => {
   mu.getDbs().then(db => {
     mu.getCollections(db).then(col => {
       mu.getData(db, col).then(data => {
-        mu.insertRegister(db, col, data).then(data => res.redirect("/"));
+        mu.insertRegister(db, col, data).then(data => res.json(data));
       });
     });
   });

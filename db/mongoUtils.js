@@ -5,8 +5,6 @@ dotenv.config();
 
 function MongoUtils() {
   const mu = {};
-  // hostname = "localhost",
-  // port = 27017;
   let dbHostName = process.env.dbHostName || "";
   let dbUser = process.env.dbUser || "";
   let dbPassword = process.env.dbPassword || "";

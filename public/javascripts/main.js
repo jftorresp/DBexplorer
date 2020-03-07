@@ -2,7 +2,6 @@ const selectDbs = document.querySelector("#databases");
 const colSelect = document.querySelector(".colsSelect");
 const dataDiv = document.querySelector(".listData");
 const dataForm = document.querySelector("#dataForm");
-// const formCollection = document.querySelector("#formCollection");
 
 selectDbs.addEventListener("change", evt => {
   if (evt.target.value) {
